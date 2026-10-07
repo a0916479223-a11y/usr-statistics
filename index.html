@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>114年度USR 活動成果</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <section class="usr-section">
+
+        <h1>114年度USR 活動成果</h1>
+
+        <div class="stats">
+
+            <!-- 1 -->
+            <div class="stat">
+                <div class="number" data-target="399">0</div>
+                <div class="label">校內教師</div>
+            </div>
+
+            <!-- 2 -->
+            <div class="stat">
+                <div class="number" data-target="1355">0</div>
+                <div class="label">校內學生</div>
+            </div>
+
+            <!-- 3 -->
+            <div class="stat">
+                <div class="number" data-target="335">0</div>
+                <div class="label">校內助理</div>
+            </div>
+
+            <!-- 4 -->
+            <div class="stat">
+                <div class="number" data-target="612">0</div>
+                <div class="label">跨校教師</div>
+            </div>
+
+            <!-- 5 -->
+            <div class="stat">
+                <div class="number" data-target="704">0</div>
+                <div class="label">跨校學生</div>
+            </div>
+
+            <!-- 6 -->
+            <div class="stat">
+                <div class="number" data-target="1513">0</div>
+                <div class="label">跨校助理</div>
+            </div>
+
+            <!-- 7 -->
+            <div class="stat">
+                <div class="number" data-target="792">0</div>
+                <div class="label">場域夥伴</div>
+            </div>
+
+            <!-- 8 -->
+            <div class="stat">
+                <div class="number" data-target="13">0</div>
+                <div class="label">其他中央</div>
+            </div>
+
+            <!-- 9 -->
+            <div class="stat">
+                <div class="number" data-target="24">0</div>
+                <div class="label">其他地方</div>
+            </div>
+
+            <!-- 10 -->
+            <div class="stat">
+                <div class="number" data-target="210">0</div>
+                <div class="label">NPO/NGO</div>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <script>
+
+        /* =========================================
+           數字動畫
+           ========================================= */
+
+        const numbers = document.querySelectorAll(".number");
+
+
+        function animateNumber(element) {
+
+            const target = Number(element.dataset.target);
+
+            const duration = 1200;
+
+            const startTime = performance.now();
+
+
+            function update(currentTime) {
+
+                const progress = Math.min(
+                    (currentTime - startTime) / duration,
+                    1
+                );
+
+
+                /* 讓動畫前面快、後面慢，視覺比較自然 */
+                const eased =
+                    1 - Math.pow(1 - progress, 3);
+
+
+                const value =
+                    Math.round(target * eased);
+
+
+                element.textContent =
+                    value.toLocaleString();
+
+
+                if (progress < 1) {
+
+                    requestAnimationFrame(update);
+
+                } else {
+
+                    element.textContent =
+                        target.toLocaleString();
+
+                }
+
+            }
+
+
+            requestAnimationFrame(update);
+
+        }
+
+
+
+        /* =========================================
+           滑到統計區域才開始動畫
+           ========================================= */
+
+        const observer =
+            new IntersectionObserver(
+
+                function (entries, observer) {
+
+                    entries.forEach(function (entry) {
+
+                        if (entry.isIntersecting) {
+
+                            numbers.forEach(function (number) {
+
+                                animateNumber(number);
+
+                            });
+
+
+                            /* 只播放一次 */
+                            observer.disconnect();
+
+                        }
+
+                    });
+
+                },
+
+                {
+                    threshold: 0.3
+                }
+
+            );
+
+
+        observer.observe(
+            document.querySelector(".stats")
+        );
+
+    </script>
+
+</body>
+
+</html>

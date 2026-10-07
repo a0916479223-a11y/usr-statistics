@@ -1,0 +1,354 @@
+/* =========================================
+   114年度 USR 活動成果
+   最終正式視覺版
+   ========================================= */
+
+
+/* =========================================
+   基本設定
+   ========================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+
+body {
+    margin: 0;
+
+    background-color: #ffffff;
+
+    font-family:
+        "Microsoft JhengHei",
+        "Noto Sans TC",
+        sans-serif;
+
+    color: #222222;
+}
+
+
+/* =========================================
+   外層區塊
+   ========================================= */
+
+.usr-section {
+
+    width: 92%;
+
+    max-width: 1400px;
+
+    margin: 70px auto 80px;
+
+    padding: 55px 45px 60px;
+
+    background-color: #f7f9fb;
+
+    border-top: 1px solid #e5e8eb;
+
+    border-bottom: 1px solid #e5e8eb;
+}
+
+
+/* =========================================
+   標題
+   ========================================= */
+
+.usr-section h1 {
+
+    margin: 0 0 55px;
+
+    text-align: center;
+
+    font-size: 32px;
+
+    font-weight: 600;
+
+    letter-spacing: 3px;
+
+    color: #333333;
+
+    position: relative;
+}
+
+
+/* 標題下面的小線 */
+
+.usr-section h1::after {
+
+    content: "";
+
+    display: block;
+
+    width: 50px;
+
+    height: 3px;
+
+    margin: 18px auto 0;
+
+    background-color: #1f3f68;
+}
+
+
+/* =========================================
+   統計區域
+   ========================================= */
+
+.stats {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(5, 1fr);
+
+    row-gap: 45px;
+
+    text-align: center;
+}
+
+
+/* =========================================
+   每一個統計項目
+   ========================================= */
+
+.stat {
+
+    padding:
+        15px 20px 20px;
+
+    border-right:
+        1px solid #d9dde1;
+
+    transition:
+        transform 0.3s ease,
+        background-color 0.3s ease;
+}
+
+
+/* 第 5 個是第一排最後一個
+   所以右邊不要有線 */
+
+.stat:nth-child(5) {
+
+    border-right: none;
+}
+
+
+/* 第 10 個是第二排最後一個
+   不需要自己的右邊線 */
+
+.stat:nth-child(10) {
+
+    border-right: none;
+
+    border-left: none;
+}
+
+
+/* =========================================
+   滑鼠移過去
+   ========================================= */
+
+.stat:hover {
+
+    transform:
+        translateY(-4px);
+
+    background-color:
+        rgba(255, 255, 255, 0.7);
+}
+
+
+/* =========================================
+   數字
+   ========================================= */
+
+.number {
+
+    font-size: 50px;
+
+    font-weight: 700;
+
+    line-height: 1.2;
+
+    color: #1f3f68;
+
+    font-variant-numeric:
+        tabular-nums;
+
+    letter-spacing: 1px;
+
+    transition:
+        color 0.3s ease;
+}
+
+
+/* 滑鼠移過去數字稍微變深 */
+
+.stat:hover .number {
+
+    color: #173250;
+}
+
+
+/* =========================================
+   名稱
+   ========================================= */
+
+.label {
+
+    margin-top: 14px;
+
+    font-size: 16px;
+
+    line-height: 1.5;
+
+    color: #666666;
+
+    letter-spacing: 1px;
+}
+
+
+/* =========================================
+   平板
+   1000px 以下
+   ========================================= */
+
+@media (max-width: 1000px) {
+
+
+    .usr-section {
+
+        width: 90%;
+
+        margin-top: 55px;
+
+        margin-bottom: 60px;
+
+        padding:
+            45px 30px 50px;
+    }
+
+
+    .usr-section h1 {
+
+        font-size: 30px;
+
+        margin-bottom: 45px;
+    }
+
+
+    /* 3 欄 */
+
+    .stats {
+
+        grid-template-columns:
+            repeat(3, 1fr);
+
+        row-gap: 40px;
+    }
+
+
+    /* 平板不顯示直線 */
+
+    .stat {
+
+        border-right: none;
+    }
+
+
+    .number {
+
+        font-size: 42px;
+    }
+
+
+    .label {
+
+        font-size: 15px;
+    }
+
+}
+
+
+/* =========================================
+   手機
+   600px 以下
+   ========================================= */
+
+@media (max-width: 600px) {
+
+
+    .usr-section {
+
+        width: 94%;
+
+        margin:
+            35px auto 45px;
+
+        padding:
+            35px 15px 40px;
+    }
+
+
+    .usr-section h1 {
+
+        font-size: 25px;
+
+        letter-spacing: 2px;
+
+        margin-bottom: 38px;
+    }
+
+
+    /* 標題底線 */
+
+    .usr-section h1::after {
+
+        width: 40px;
+
+        height: 2px;
+
+        margin-top: 14px;
+    }
+
+
+    /* 手機 2 欄 */
+
+    .stats {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        row-gap: 30px;
+    }
+
+
+    /* 手機不顯示直線 */
+
+    .stat {
+
+        padding:
+            10px 5px 15px;
+
+        border-right: none;
+    }
+
+
+    .number {
+
+        font-size: 35px;
+
+        letter-spacing: 0;
+    }
+
+
+    .label {
+
+        margin-top: 10px;
+
+        font-size: 14px;
+
+        letter-spacing: 0;
+    }
+
+}
